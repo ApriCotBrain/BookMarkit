@@ -40,12 +40,12 @@ class Collection(models.Model):
         max_length=Limits.COLLECTION_DESCRIPTION_MAX_CHAR,
         help_text="add a description of the collection",
     )
-    time_created = models.DateField(
+    time_created = models.DateTimeField(
         "date of creation",
         help_text="date the collection was created",
         auto_now_add=True,
     )
-    time_updated = models.DateField(
+    time_updated = models.DateTimeField(
         "date of update",
         help_text="date of the last update of the collection",
         auto_now=True,
@@ -95,17 +95,17 @@ class Bookmark(models.Model):
         help_text="image preview",
         upload_to="bookmarks/images/",
     )
-    time_created = models.DateField(
+    time_created = models.DateTimeField(
         "date of creation",
         help_text="date the bookmark was created",
         auto_now_add=True,
     )
-    time_updated = models.DateField(
+    time_updated = models.DateTimeField(
         "date of update",
         help_text="date of the last update of the bookmark",
         auto_now=True,
     )
-    Collections = models.ManyToManyField(
+    collections = models.ManyToManyField(
         Collection,
         verbose_name="collection",
         help_text="add a bookmark to the collections",
