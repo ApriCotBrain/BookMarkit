@@ -36,8 +36,8 @@ def get_link_info(url):
         )
 
     data = {
-        "title": og_title[:100],
-        "description": og_description[:300],
+        "title": og_title,
+        "description": og_description,
         "image": og_image[:100],
         "url_type": og_type,
     }

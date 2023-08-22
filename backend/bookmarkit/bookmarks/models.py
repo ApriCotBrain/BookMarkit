@@ -11,7 +11,6 @@ class UrlType(models.Model):
 
     name = models.CharField(
         "name",
-        unique=True,
         max_length=Limits.URL_TYPE_NAME_MAX_CHAR,
         help_text="url type name",
     )
@@ -67,15 +66,15 @@ class Collection(models.Model):
 class Bookmark(models.Model):
     """Bookmark Model."""
 
-    title = models.CharField(
+    title = models.TextField(
         "title",
-        max_length=Limits.MARKBOOK_TITLE_MAX_CHAR,
         help_text="bookmark page title",
     )
-    description = models.CharField(
+    description = models.TextField(
         "description",
-        max_length=Limits.MARKBOOK_DESCRIPTION_MAX_CHAR,
         help_text="add a description of the collection",
+        blank=True,
+        null=True,
     )
     url = models.URLField(
         "url",

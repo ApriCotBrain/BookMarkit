@@ -2,7 +2,7 @@
 
 from django.contrib.auth import get_user_model
 from drf_spectacular.utils import extend_schema
-from rest_framework import viewsets
+from rest_framework import permissions, viewsets
 
 from api.v1.serializers import (
     CollectionSerializer,
@@ -20,6 +20,7 @@ class UrlTypeViewSet(viewsets.ModelViewSet):
 
     queryset = UrlType.objects.all()
     serializer_class = UrlTypeSerializer
+    permission_classes = (permissions.IsAdminUser,)
     pagination_class = None
 
 
