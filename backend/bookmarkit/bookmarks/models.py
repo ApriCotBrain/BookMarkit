@@ -1,11 +1,9 @@
 """Database settings of the 'Bookmarks' application."""
 
-from django.contrib.auth import get_user_model
+from django.conf import settings
 from django.db import models
 
 from core.enums import Limits
-
-User = get_user_model()
 
 
 class UrlType(models.Model):
@@ -51,7 +49,7 @@ class Collection(models.Model):
         auto_now=True,
     )
     user = models.ForeignKey(
-        User,
+        settings.AUTH_USER_MODEL,
         verbose_name="user",
         help_text="author of the collection",
         on_delete=models.CASCADE,
@@ -113,7 +111,7 @@ class Bookmark(models.Model):
         blank=True,
     )
     user = models.ForeignKey(
-        User,
+        settings.AUTH_USER_MODEL,
         verbose_name="user",
         help_text="author of the bookmark",
         on_delete=models.CASCADE,

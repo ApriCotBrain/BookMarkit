@@ -79,10 +79,11 @@ class CreateBookmarkSerializer(serializers.ModelSerializer):
             image=image,
             **validated_data
         )
-        for collection_name in collections_data:
-            collection = Collection.objects.get(name=collection_name)
-            bookmark.collections.add(collection)
-            bookmark.save()
+        existing_collections = Collection.objects.filter(
+            name__in=collections_data
+        )
+        bookmark.collections.set(existing_collections)
+        bookmark.save()
 
         return bookmark
 
