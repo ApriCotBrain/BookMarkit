@@ -7,17 +7,17 @@ def get_link_info(url):
     html = response.text
     soup = BeautifulSoup(html, "html.parser")
     og_title = (
-        soup.find("meta", property="og:title")["content"]
+        soup.find("meta", property="og:title")["content"][:100]
         if soup.find("meta", property="og:title")
         else None
     )
     og_description = (
-        soup.find("meta", property="og:description")["content"]
+        soup.find("meta", property="og:description")["content"][:300]
         if soup.find("meta", property="og:description")
         else None
     )
     og_image = (
-        soup.find("meta", property="og:image")["content"]
+        soup.find("meta", property="og:image")["content"][:100]
         if soup.find("meta", property="og:image")
         else None
     )
@@ -38,7 +38,7 @@ def get_link_info(url):
     data = {
         "title": og_title,
         "description": og_description,
-        "image": og_image[:100],
+        "image": og_image,
         "url_type": og_type,
     }
     return data

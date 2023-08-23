@@ -86,6 +86,7 @@ class Bookmark(models.Model):
         help_text="link type",
         on_delete=models.PROTECT,
         related_name="bookmarks",
+        default=1,
     )
     image = models.ImageField(
         "image",

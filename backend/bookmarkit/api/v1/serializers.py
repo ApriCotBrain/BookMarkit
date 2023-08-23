@@ -76,12 +76,18 @@ class CreateBookmarkSerializer(serializers.ModelSerializer):
         current_user = self.context["request"].user
         collections_data = validated_data.pop("collections", [])
         url = validated_data["url"]
+
         self.validate(validated_data)
+
         link_info = get_link_info(url)
         og_type = link_info["url_type"]
-        url_type, created = UrlType.objects.get_or_create(
-            name=og_type, defaults={"name": "website"}
-        )
+
+        if og_type is None:
+            url_type = UrlType.objects.get(id=1)
+        else:
+            url_type, created = UrlType.objects.get_or_create(
+                name=og_type
+            )
 
         title = link_info["title"]
         description = link_info["description"]
