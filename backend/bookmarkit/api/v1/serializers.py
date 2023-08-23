@@ -9,6 +9,22 @@ from bookmarks.models import Bookmark, Collection, UrlType
 User = get_user_model()
 
 
+class UserSerializer(serializers.ModelSerializer):
+    """A serializer for user creation."""
+
+    class Meta:
+        model = User
+        fields = ("email", "password")
+
+    def create(self, validated_data):
+        password = validated_data.pop('password')
+        user = User.objects.create(**validated_data)
+        user.set_password(password)
+        user.save()
+
+        return user
+
+
 class UrlTypeSerializer(serializers.ModelSerializer):
     """A serializer for work with url type requests."""
 
