@@ -1,7 +1,6 @@
 """Viewsets of the 'api' application v1."""
 
 from django.contrib.auth import get_user_model
-from drf_spectacular.utils import extend_schema
 from rest_framework import permissions, viewsets
 
 from api.v1.serializers import (

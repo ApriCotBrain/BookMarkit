@@ -5,15 +5,15 @@ from rest_framework.routers import DefaultRouter
 
 from api.v1.views import BookmarkViewSet, CollectionViewSet, UrlTypeViewSet
 
-router = DefaultRouter()
+v1_router = DefaultRouter()
 
-router.register("bookmarks", BookmarkViewSet, basename="bookmark")
-router.register("collections", CollectionViewSet, basename="collection")
-router.register("urltypes", UrlTypeViewSet, basename="urltype")
+v1_router.register("bookmarks", BookmarkViewSet, basename="bookmark")
+v1_router.register("collections", CollectionViewSet, basename="collection")
+v1_router.register("urltypes", UrlTypeViewSet, basename="urltype")
 
 
 urlpatterns = [
-    path("", include(router.urls)),
+    path("", include(v1_router.urls)),
     path("", include("djoser.urls")),
     path("", include("djoser.urls.authtoken")),
 ]
