@@ -17,7 +17,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ("email", "password")
 
     def create(self, validated_data):
-        password = validated_data.pop('password')
+        password = validated_data.pop("password")
         user = User.objects.create(**validated_data)
         user.set_password(password)
         user.save()
@@ -46,7 +46,7 @@ class CollectionSerializer(serializers.ModelSerializer):
         model = Collection
 
     def create(self, validated_data):
-        current_user = self.context["request"].user
+        current_user = self.context.get("request").user
         collection = Collection.objects.create(
             user=current_user, **validated_data
         )
@@ -73,21 +73,16 @@ class CreateBookmarkSerializer(serializers.ModelSerializer):
         model = Bookmark
 
     def create(self, validated_data):
-        current_user = self.context["request"].user
+        current_user = self.context.get("request").user
         collections_data = validated_data.pop("collections", [])
         url = validated_data["url"]
-
-        self.validate(validated_data)
-
         link_info = get_link_info(url)
         og_type = link_info["url_type"]
 
         if og_type is None:
-            url_type = UrlType.objects.get(id=1)
+            url_type = UrlType.objects.get(name="website")
         else:
-            url_type, created = UrlType.objects.get_or_create(
-                name=og_type
-            )
+            url_type, created = UrlType.objects.get_or_create(name=og_type)
 
         title = link_info["title"]
         description = link_info["description"]

@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
                 blank=True,
                 help_text="add a description of the collection",
                 max_length=core.enums.Limits[
-                    "COLLECTION_DESCRIPTION_MAX_CHAR"
+                    "COLLECTION_DESCRIPTION_MAX_LENGTH"
                 ],
                 null=True,
                 verbose_name="description",

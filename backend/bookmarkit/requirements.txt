@@ -1,5 +1,6 @@
 beautifulsoup4==4.12.2
 django==4.2.4
+django-filter==23.2
 djangorestframework==3.14.0
 djoser==2.2.0
 drf-spectacular==0.26.4

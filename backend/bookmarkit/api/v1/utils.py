@@ -1,23 +1,34 @@
+"""Helper functions of 'Api' application v1."""
+
 import requests
 from bs4 import BeautifulSoup
 
+from core.enums import Limits
 
-def get_link_info(url):
+
+def get_link_info(url: str) -> dict:
+    """Extracts information from the specified URL."""
     response = requests.get(url)
     html = response.text
     soup = BeautifulSoup(html, "html.parser")
     og_title = (
-        soup.find("meta", property="og:title")["content"][:100]
+        soup.find("meta", property="og:title")["content"][
+            : Limits.BOOKMARK_TITLE_MAX_LENGTH
+        ]
         if soup.find("meta", property="og:title")
         else None
     )
     og_description = (
-        soup.find("meta", property="og:description")["content"][:300]
+        soup.find("meta", property="og:description")["content"][
+            : Limits.BOOKMARK_DESCRIPTION_MAX_LENGTH
+        ]
         if soup.find("meta", property="og:description")
         else None
     )
     og_image = (
-        soup.find("meta", property="og:image")["content"][:100]
+        soup.find("meta", property="og:image")["content"][
+            : Limits.BOOKMARK_IMAGE_MAX_LENGTH
+        ]
         if soup.find("meta", property="og:image")
         else None
     )

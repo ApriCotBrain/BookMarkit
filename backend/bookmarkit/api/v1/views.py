@@ -2,8 +2,10 @@
 
 from django.contrib.auth import get_user_model
 from rest_framework import permissions, mixins, status, viewsets
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 
+from api.v1.filters import IsAuthorFilterBackend
 from api.v1.serializers import (
     CollectionSerializer,
     CreateBookmarkSerializer,
@@ -12,6 +14,7 @@ from api.v1.serializers import (
     UserSerializer,
 )
 from bookmarks.models import Bookmark, Collection, UrlType
+from core.enums import Limits
 
 User = get_user_model()
 
@@ -30,7 +33,6 @@ class UrlTypeViewSet(viewsets.ModelViewSet):
     queryset = UrlType.objects.all()
     serializer_class = UrlTypeSerializer
     permission_classes = (permissions.IsAdminUser,)
-    pagination_class = None
 
 
 class CollectionViewSet(viewsets.ModelViewSet):
@@ -38,7 +40,9 @@ class CollectionViewSet(viewsets.ModelViewSet):
 
     queryset = Collection.objects.all()
     serializer_class = CollectionSerializer
-    pagination_class = None
+    filter_backends = (IsAuthorFilterBackend,)
+    pagination_class = PageNumberPagination
+    pagination_class.page_size = Limits.COLLECTION_NUMBER_PER_PAGE
 
 
 class BookmarkViewSet(viewsets.ModelViewSet):
@@ -46,7 +50,9 @@ class BookmarkViewSet(viewsets.ModelViewSet):
 
     queryset = Bookmark.objects.all()
     serializer_class = CreateBookmarkSerializer
-    pagination_class = None
+    filter_backends = (IsAuthorFilterBackend,)
+    pagination_class = PageNumberPagination
+    pagination_class.page_size = Limits.BOOKMARK_NUMBER_PER_PAGE
 
     def get_serializer_class(self):
         if self.request.method in ("POST", "PATCH"):

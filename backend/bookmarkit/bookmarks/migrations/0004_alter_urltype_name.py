@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
             name="name",
             field=models.CharField(
                 help_text="url type name",
-                max_length=core.enums.Limits["URL_TYPE_NAME_MAX_CHAR"],
+                max_length=core.enums.Limits["URL_TYPE_NAME_MAX_LENGTH"],
                 verbose_name="name",
             ),
         ),

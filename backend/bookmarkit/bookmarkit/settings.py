@@ -115,7 +115,6 @@ REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
-
 SPECTACULAR_SETTINGS = {
     "TITLE": "BookMarkIt API",
     "DESCRIPTION": "A server part for the Bookmarkit project",

@@ -11,7 +11,7 @@ class UrlType(models.Model):
 
     name = models.CharField(
         "name",
-        max_length=Limits.URL_TYPE_NAME_MAX_CHAR,
+        max_length=Limits.URL_TYPE_NAME_MAX_LENGTH,
         help_text="url type name",
     )
 
@@ -29,12 +29,12 @@ class Collection(models.Model):
     name = models.CharField(
         "name",
         unique=True,
-        max_length=Limits.COLLECTION_NAME_MAX_CHAR,
+        max_length=Limits.COLLECTION_NAME_MAX_LENGTH,
         help_text="collection's name",
     )
     description = models.CharField(
         "description",
-        max_length=Limits.COLLECTION_DESCRIPTION_MAX_CHAR,
+        max_length=Limits.COLLECTION_DESCRIPTION_MAX_LENGTH,
         help_text="add a description of the collection",
     )
     time_created = models.DateTimeField(
@@ -66,12 +66,14 @@ class Collection(models.Model):
 class Bookmark(models.Model):
     """Bookmark Model."""
 
-    title = models.TextField(
+    title = models.CharField(
         "title",
+        max_length=Limits.BOOKMARK_TITLE_MAX_LENGTH,
         help_text="bookmark page title",
     )
-    description = models.TextField(
+    description = models.CharField(
         "description",
+        max_length=Limits.BOOKMARK_DESCRIPTION_MAX_LENGTH,
         help_text="add a description of the collection",
         blank=True,
         null=True,
@@ -90,6 +92,7 @@ class Bookmark(models.Model):
     )
     image = models.ImageField(
         "image",
+        max_length=Limits.BOOKMARK_IMAGE_MAX_LENGTH,
         help_text="image preview",
         upload_to="bookmarks/images/",
     )

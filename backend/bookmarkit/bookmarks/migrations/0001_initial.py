@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                     "title",
                     models.CharField(
                         help_text="bookmark page title",
-                        max_length=core.enums.Limits["URL_TYPE_NAME_MAX_CHAR"],
+                        max_length=core.enums.Limits["URL_TYPE_NAME_MAX_LENGTH"],
                         verbose_name="title",
                     ),
                 ),
@@ -35,7 +35,7 @@ class Migration(migrations.Migration):
                     models.CharField(
                         help_text="add a description of the collection",
                         max_length=core.enums.Limits[
-                            "COLLECTION_DESCRIPTION_MAX_CHAR"
+                            "COLLECTION_DESCRIPTION_MAX_LENGTH"
                         ],
                         verbose_name="description",
                     ),
@@ -92,7 +92,7 @@ class Migration(migrations.Migration):
                     "name",
                     models.CharField(
                         help_text="collection's name",
-                        max_length=core.enums.Limits["URL_TYPE_NAME_MAX_CHAR"],
+                        max_length=core.enums.Limits["URL_TYPE_NAME_MAX_LENGTH"],
                         unique=True,
                         verbose_name="name",
                     ),
@@ -102,7 +102,7 @@ class Migration(migrations.Migration):
                     models.CharField(
                         help_text="add a description of the collection",
                         max_length=core.enums.Limits[
-                            "COLLECTION_DESCRIPTION_MAX_CHAR"
+                            "COLLECTION_DESCRIPTION_MAX_LENGTH"
                         ],
                         verbose_name="description",
                     ),
@@ -145,7 +145,7 @@ class Migration(migrations.Migration):
                     "name",
                     models.CharField(
                         help_text="url type name",
-                        max_length=core.enums.Limits["URL_TYPE_NAME_MAX_CHAR"],
+                        max_length=core.enums.Limits["URL_TYPE_NAME_MAX_LENGTH"],
                         unique=True,
                         verbose_name="name",
                     ),
