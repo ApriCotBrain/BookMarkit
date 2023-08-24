@@ -38,6 +38,12 @@ docker-compose exec backend python manage.py migrate
 docker-compose exec backend python manage.py collectstatic --no-input
 ```
 
+- загрузить тестовые данные:
+
+```
+docker-compose exec backend python manage.py loaddata data/fixtures.json
+```
+
 После сборки контейнеров проект будет доступен по адресу:
 
 ```
